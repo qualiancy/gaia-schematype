@@ -1,20 +1,20 @@
-# gaia-schema-type
+# gaia-schematype [![Build Status](https://travis-ci.org/qualiancy/gaia-schematype.png?branch=master)](https://travis-ci.org/qualiancy/gaia-schematype)
 
-> Base constructor for all gaia-schema base data types.
+> Base constructor for all gaia-schema data types.
 
 ## Installation
 
 ### Node.js
 
-`gaia-schema-type` is available on [npm](http://npmjs.org).
+`gaia-schematype` is available on [npm](http://npmjs.org).
 
-    $ npm install gaia-schema-type
+    $ npm install gaia-schematype
 
 ### Component
 
-`gaia-schema-type` is available as a [component](https://github.com/component/component).
+`gaia-schematype` is available as a [component](https://github.com/component/component).
 
-    $ component install qualiancy/gaia-schema-type
+    $ component install qualiancy/gaia-schematype
 
 ## License
 

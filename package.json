@@ -1,7 +1,7 @@
 {
     "name": "gaia-schematype"
-  , "version": "0.0.0"
-  , "description": "Base constructor for all gaia-schema base data types."
+  , "version": "0.1.0"
+  , "description": "Base constructor for all gaia-schema data types."
   , "author": "Jake Luer <jake@qualiancy.com> (http://qualiancy.com)"
   , "license": "MIT"
   , "keywords": [
