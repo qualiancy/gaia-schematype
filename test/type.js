@@ -2,7 +2,7 @@ describe('mixin', function () {
   it('should mixin all methods', function () {
     var keys = Object.keys(SchemaType.prototype);
     function Noop () {};
-    SchemaType.mixin(Noop.prototype);
+    SchemaType('custom', Noop.prototype);
     keys.forEach(function (key) {
       Noop.should.respondTo(key);
     });
@@ -11,16 +11,10 @@ describe('mixin', function () {
 
 describe('usage', function () {
 
-  function CustomType (spec, value) {
-    SchemaType.call(this, 'custom', spec, value);
-  }
+  function CustomType () {}
+  SchemaType('custom', CustomType.prototype);
 
-  SchemaType.mixin(CustomType.prototype);
-
-  CustomType.prototype._validate = function () {
-    var spec = this.spec
-      , value = this.value;
-
+  CustomType.prototype._validate = function (value, spec) {
     this.assert(
         'string' === typeof value
       , 'Expected type to be a string but got ' + typeof value + '.'
@@ -32,10 +26,8 @@ describe('usage', function () {
     );
   };
 
-  CustomType.prototype._export = function () {
-    var spec = this.spec
-      , value = this.value
-      , scen = spec && spec.case
+  CustomType.prototype._cast = function (value, spec) {
+    var scen = spec && spec.case
         ? spec.case
         : null;
 
@@ -44,36 +36,23 @@ describe('usage', function () {
       : value;
   };
 
-  var TEST_STR = 'heLLo UniVerse'
+  var str = new CustomType()
+    , TEST_STR = 'heLLo UniVerse'
     , TEST_STR_UPPER = 'HELLO UNIVERSE';
 
   describe('new CustomType()', function () {
-    var spec = { spec: true }
-      , str = new CustomType({ spec: true }, TEST_STR);
-
     it('should assign "name" property', function () {
       str.should.have.property('name', 'custom');
-    });
-
-    it('should assign "spec" property', function () {
-      str.should.have.property('spec')
-        .deep.equal(spec);
-    });
-
-    it('should assign "value" property', function () {
-      str.should.have.property('value', TEST_STR);
     });
   });
 
   describe('.rejected()', function () {
     it('should return null on pass', function () {
-      var str = new CustomType(null, TEST_STR);
-      should.equal(str.rejected(), null);
+      should.equal(str.rejected(TEST_STR), null);
     });
 
     it('should return error on fail', function () {
-      var str = new CustomType(null, 42)
-        , err = str.rejected();
+      var err = str.rejected(42);
       should.exist(err);
       err.should.be.instanceof(Error);
       err.should.have.property('name', 'AssertionError');
@@ -82,30 +61,31 @@ describe('usage', function () {
 
   describe('.valid()', function () {
     it('should return true on pass', function () {
-      var str = new CustomType(null, TEST_STR);
-      str.valid().should.equal.true;
+      str.valid(TEST_STR).should.equal.true;
     });
 
     it('should return false on fail', function () {
-      var str = new CustomType(null, 42);
-      str.valid().should.equal.false;
+      str.valid(42).should.equal.false;
     });
   });
 
-  describe('.export()', function () {
+  describe('.cast()', function () {
     it('should return the correct value', function () {
-      var str1 = new CustomType({ case: 'upper' }, TEST_STR)
-        , str2 = new CustomType({ case: 'other' }, TEST_STR);
-      str1.export().should.equal(TEST_STR_UPPER);
-      str2.export().should.equal(TEST_STR);
+      str.cast(TEST_STR, { case: 'upper' }).should.equal(TEST_STR_UPPER);
+      str.cast(TEST_STR, { case: 'other' }).should.equal(TEST_STR);
     });
 
     it('should throw if validation error', function () {
-      var str = new CustomType({ case: 'upper' }, 42)
-        , res;
       (function () {
-        res = str.export();
+        res = str.cast(42, { case: 'upper' });
       }).should.throw('Expected type to be a string but got number.');
+    });
+
+    it('should not validate with third argument', function () {
+      str.cast(42, { case: 'other' }, false).should.equal(42);
+      (function () {
+        str.cast(42, { case: 'upper' }, false);
+      }).should.throw(/toUpperCase/);
     });
   });
 
