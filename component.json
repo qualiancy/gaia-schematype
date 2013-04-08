@@ -1,15 +1,19 @@
 {
-    "name": "gaia-schema-type"
-  , "repo": "qualiancy/gaia-schema-type"
+    "name": "gaia-schematype"
+  , "repo": "qualiancy/gaia-schematype"
   , "version": "0.0.0"
   , "description": "Base constructor for all gaia-schema base data types."
   , "license": "MIT"
   , "keywords": [
     ]
-  , "main": "lib/schema-type.js"
+  , "main": "lib/schematype.js"
   , "scripts": [
-        "lib/schema-type.js"
+        "lib/schematype.js"
     ]
-  , "dependencies": {}
+  , "dependencies": {
+        "qualiancy/assertion-error": "0.1.0"
+      , "qualiancy/sherlock": "*"
+      , "qualiancy/tea-extend": "0.2.0"
+    }
   , "development": {}
 }

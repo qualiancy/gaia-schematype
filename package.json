@@ -1,5 +1,5 @@
 {
-    "name": "gaia-schema-type"
+    "name": "gaia-schematype"
   , "version": "0.0.0"
   , "description": "Base constructor for all gaia-schema base data types."
   , "author": "Jake Luer <jake@qualiancy.com> (http://qualiancy.com)"
@@ -18,6 +18,9 @@
       "test": "make test"
     }
   , "dependencies": {
+        "assertion-error": "0.1.0"
+      , "sherlock": "*"
+      , "tea-extend": "0.2.0"
     }
   , "devDependencies": {
         "chai": "*"

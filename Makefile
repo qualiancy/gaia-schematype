@@ -22,7 +22,7 @@ test-browser: build
 		./test/browser/index.html
 
 test-cov: lib-cov
-	@schema-type_COV=1 NODE_ENV=test ./node_modules/.bin/mocha \
+	@SchemaType_COV=1 NODE_ENV=test ./node_modules/.bin/mocha \
 		--require ./test/bootstrap \
 		--reporter html-cov \
 		$(TESTS) \

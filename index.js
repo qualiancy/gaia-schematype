@@ -1,3 +1,3 @@
-module.exports = process.env.schema-type_COV
-  ? require('./lib-cov/schema-type')
-  : require('./lib/schema-type');
+module.exports = process.env.SchemaType_COV
+  ? require('./lib-cov/schematype')
+  : require('./lib/schematype');
