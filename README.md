@@ -46,26 +46,6 @@ SchemaType('custom', CustomType.prototype);
 ```
 
 
-### .valid (value[, spec])
-
-* **@param** _{Mixed}_ value to test
-* **@param** _{Object}_ spec to validate against
-* **@return** _{Boolean}_  does validation pass
-
-Invoke the validation rules of this data type. Will
-return `true` or `false` depending on whether the
-validation rules pass or fail.
-
-If you need to know what validation aspect failed,
-use `.rejected()` instead.
-
-```js
-if (data.valid()) {
-  // all good
-}
-```
-
-
 ### .rejected (value[, spec])
 
 * **@param** _{Mixed}_ value to test
@@ -75,48 +55,69 @@ if (data.valid()) {
 Invoke the validation rules of this data type. Will
 return `null` if the data is valid or an `Error` object
 with relevant information if there was a problem.
-
 If you don't need to know the reason for the reject,
 use `.valid()` instead.
 
 ```js
-var ve = data.validate();
+var ve = custom.validate(value, spec);
 if (ve) throw ve;
+```
+
+
+### .valid (value[, spec])
+
+* **@param** _{Mixed}_ value to test
+* **@param** _{Object}_ spec to validate against
+* **@return** _{Boolean}_  does validation pass
+
+Invoke the validation rules of this data type. Will
+return `true` or `false` depending on whether the
+validation rules pass or fail. If you need to know
+what validation aspect failed, use `.rejected()` instead.
+
+```js
+if (custom.valid(value, spec)) {
+  // all good
+}
 ```
 
 
 ### .cast (value[, spec])
 
-* **@param** _{Mixed}_ value to test
-* **@param** _{Object}_ spec to validate against
-* **@param** _{Boolean}_ validate before cast (default: `true`)
+* **@param** _{Mixed}_ value to cast
+* **@param** _{Object}_ spec to cast against
 * **@return** _{Mixed}_  result
 
-Invokes the validation then cast rules of this data
-type. Will throw validation or cast rule errors if
-they occur. Otherwise it will return the appropriate
-data element.
+Invokes the cast rules of this data type. Will throw
+cast rule errors if they occur. Otherwise it will return
+the appropriate data element. It is up to the user to
+to validate beforehand.
 
 ```js
 var spec = { case: 'upper' }
   , value = 'hello universe'
-  , err = null
-  , res;
+  , err = custom.rejected(value, spec)
+  , res = null;
 
-// with cast validation
-try {
-  res = custom.cast(value, spec);
-} catch (ex) {
-  err = ex;
+if (!err) {
+  try {
+    res = custom.cast(value, spec);
+  } catch (ex) {
+    err = ex;
+  }
 }
 
-// without cast validation
-if (custom.valid(value, spec)) {
-  res = custom.cast(value, spec, false);
-} else {
-  err = custom.rejected(value, spec);
-}
+cb(err, res);
 ```
+
+
+### .extect (value[, spec])
+
+
+* **@param** _{Mixed}_ value to extract
+* **@param** _{Object}_ spec to extract against
+* **@return** _{Mixed}_  result
+
 
 
 ### ._validate (value[, spec])
@@ -132,6 +133,18 @@ met.
 
 
 ### ._cast (value[, spec])
+
+* **@param** _{Mixed}_ value to test
+* **@param** _{Object}_ spec to validate against
+
+**Implementors** of custom data types need to
+provide this method to specify how this data
+type should cast specific data points. For example,
+a X/Y vector point specied as an object can be
+exported as an array of `[ x, y ]`.
+
+
+### ._extract (value[, spec])
 
 * **@param** _{Mixed}_ value to test
 * **@param** _{Object}_ spec to validate against
@@ -173,11 +186,12 @@ CustomType.prototype._validate = function () {
 ```
 
 
+
 ## License
 
 (The MIT License)
 
-Copyright (c) 2012 Jake Luer <jake@qualiancy.com> (http://qualiancy.com)
+Copyright (c) 2013 Jake Luer <jake@qualiancy.com> (http://qualiancy.com)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
