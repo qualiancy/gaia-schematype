@@ -1,4 +1,10 @@
 
+0.3.0 / 2013-04-17 
+==================
+
+  * tests: refactor for previous
+  * lib: add extract methods, cast doesn't validate
+
 0.2.0 / 2013-04-08 
 ==================
 
