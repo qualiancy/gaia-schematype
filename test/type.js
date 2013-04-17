@@ -15,7 +15,7 @@ describe('usage', function () {
   SchemaType('custom', CustomType.prototype);
 
   CustomType.prototype._validate = function (value, spec) {
-    this.assert(
+    this._assert(
         'string' === typeof value
       , 'Expected type to be a string but got ' + typeof value + '.'
       , {
@@ -36,8 +36,18 @@ describe('usage', function () {
       : value;
   };
 
+  CustomType.prototype._extract = function (value, spec) {
+    var scen = spec && spec.case
+        ? spec.case
+        : null;
+
+    return scen === 'upper'
+      ? value.toLowerCase()
+      : value;
+  };
+
   var str = new CustomType()
-    , TEST_STR = 'heLLo UniVerse'
+    , TEST_STR = 'hello universe'
     , TEST_STR_UPPER = 'HELLO UNIVERSE';
 
   describe('new CustomType()', function () {
@@ -74,19 +84,12 @@ describe('usage', function () {
       str.cast(TEST_STR, { case: 'upper' }).should.equal(TEST_STR_UPPER);
       str.cast(TEST_STR, { case: 'other' }).should.equal(TEST_STR);
     });
-
-    it('should throw if validation error', function () {
-      (function () {
-        res = str.cast(42, { case: 'upper' });
-      }).should.throw('Expected type to be a string but got number.');
-    });
-
-    it('should not validate with third argument', function () {
-      str.cast(42, { case: 'other' }, false).should.equal(42);
-      (function () {
-        str.cast(42, { case: 'upper' }, false);
-      }).should.throw(/toUpperCase/);
-    });
   });
 
+  describe('.extract()', function () {
+    it('should return the correct value', function () {
+      str.extract(TEST_STR_UPPER, { case: 'upper' }).should.equal(TEST_STR);
+      str.extract(TEST_STR_UPPER, { case: 'lower' }).should.equal(TEST_STR_UPPER);
+    });
+  });
 });
