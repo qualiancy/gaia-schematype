@@ -20,8 +20,6 @@
 
 * **@param** _{String}_ name of type
 * **@param** _{Object}_ object to mixin
-* **@param** _{Object}_ validation specs
-* **@param** _{Mixed}_ value to cast
 
 This is the base for all Gaia Schema data
 types. This class should not be used directly
@@ -122,7 +120,7 @@ cb(err, res);
 
 ### ._validate (value[, spec])
 
-* **@param** _{Mixed}_ value to test
+* **@param** _{Mixed}_ value to validate
 * **@param** _{Object}_ spec to validate against
 
 **Implementors** of custom data types need to
@@ -134,26 +132,26 @@ met.
 
 ### ._cast (value[, spec])
 
-* **@param** _{Mixed}_ value to test
-* **@param** _{Object}_ spec to validate against
+* **@param** _{Mixed}_ value to cast
+* **@param** _{Object}_ spec to cast against
 
 **Implementors** of custom data types need to
 provide this method to specify how this data
 type should cast specific data points. For example,
-a X/Y vector point specied as an object can be
+a X/Y vector point specified as an object can be
 exported as an array of `[ x, y ]`.
 
 
 ### ._extract (value[, spec])
 
-* **@param** _{Mixed}_ value to test
-* **@param** _{Object}_ spec to validate against
+* **@param** _{Mixed}_ value to extract
+* **@param** _{Object}_ spec to extract against
 
 **Implementors** of custom data types need to
 provide this method to specify how this data
-type should cast specific data points. For example,
-a X/Y vector point specied as an object can be
-exported as an array of `[ x, y ]`.
+type should extract specific data points. For example,
+a X/Y vector point cast as an array can be extracted
+to an object of `{ x: arr[0], y: arr[1] }`.
 
 
 ### ._assert (test, message, properties)
