@@ -15,7 +15,7 @@ describe('usage', function () {
   SchemaType('custom', CustomType.prototype);
 
   CustomType.prototype._validate = function (value, spec) {
-    this._assert(
+    this.assert(
         'string' === typeof value
       , 'Expected type to be a string but got ' + typeof value + '.'
       , {
