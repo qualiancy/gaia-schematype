@@ -1,7 +1,7 @@
 {
     "name": "gaia-schematype"
   , "repo": "qualiancy/gaia-schematype"
-  , "version": "0.3.0"
+  , "version": "0.4.0"
   , "description": "Base constructor for all gaia-schema data types."
   , "license": "MIT"
   , "keywords": [

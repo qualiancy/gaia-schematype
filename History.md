@@ -1,4 +1,14 @@
 
+0.4.0 / 2013-09-02 
+==================
+
+ * test: #assert change
+ * lib: code cleanup and rename #assert
+ * pkg: using assertion-error 1.0.0
+ * docs: fix typos in readme
+ * docs: update typo comments
+ * docs: docs for 0.3.0
+
 0.3.0 / 2013-04-17 
 ==================
 
