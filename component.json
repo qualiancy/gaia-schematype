@@ -11,7 +11,7 @@
         "lib/schematype.js"
     ]
   , "dependencies": {
-        "qualiancy/assertion-error": "0.1.0"
+        "chaijs/assertion-error": "1.0.0"
       , "qualiancy/sherlock": "*"
       , "qualiancy/tea-extend": "0.2.0"
     }

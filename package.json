@@ -18,7 +18,7 @@
       "test": "make test"
     }
   , "dependencies": {
-        "assertion-error": "0.1.0"
+        "assertion-error": "1.0.0"
       , "sherlock": "*"
       , "tea-extend": "0.2.0"
     }
