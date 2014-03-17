@@ -1,4 +1,9 @@
 
+0.5.1 / 2014-03-17 
+==================
+
+  * bug: #valid returned opposite of expected, bad tests
+
 0.5.0 / 2014-03-17 
 ==================
 
