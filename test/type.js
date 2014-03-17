@@ -67,6 +67,7 @@ suite('usage', function () {
 
   suite('.wrap()', function () {
     test('return the correct value', function () {
+      str.wrap(TEST_STR).should.equal(TEST_STR);
       str.wrap(TEST_STR, { case: 'upper' }).should.equal(TEST_STR_UPPER);
       str.wrap(TEST_STR, { case: 'other' }).should.equal(TEST_STR);
     });
@@ -74,6 +75,7 @@ suite('usage', function () {
 
   suite('.unwrap()', function () {
     test('return the correct value', function () {
+      str.unwrap(TEST_STR).should.equal(TEST_STR);
       str.unwrap(TEST_STR_UPPER, { case: 'upper' }).should.equal(TEST_STR);
       str.unwrap(TEST_STR_UPPER, { case: 'lower' }).should.equal(TEST_STR_UPPER);
     });

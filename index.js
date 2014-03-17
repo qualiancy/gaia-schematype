@@ -78,7 +78,7 @@ SchemaType.prototype.rejected = function(value, spec) {
   var name = this.name;
 
   try {
-    this._validate(value, spec);
+    this._validate(value, spec || {});
     debug('(%s) validate success', name);
   } catch (ex) {
     err = ex;
@@ -149,7 +149,7 @@ SchemaType.prototype.wrap = function(value, spec) {
   var res;
 
   try {
-    res = this._wrap(value, spec);
+    res = this._wrap(value, spec || {});
     debug('(%s) wrap success', name);
   } catch (e) {
     debug('(%s) wrap error: %s', name, e.message);
@@ -174,7 +174,7 @@ SchemaType.prototype.unwrap = function(value, spec) {
   var res;
 
   try {
-    res = this._unwrap(value, spec);
+    res = this._unwrap(value, spec || {});
     debug('(%s) extract success', name);
   } catch (e) {
     debug('(%s) extract error: %s', name, e.message);
