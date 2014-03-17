@@ -1,31 +1,27 @@
 {
-    "name": "gaia-schematype"
-  , "version": "0.4.0"
-  , "description": "Base constructor for all gaia-schema data types."
-  , "author": "Jake Luer <jake@qualiancy.com> (http://qualiancy.com)"
-  , "license": "MIT"
-  , "keywords": [
-    ]
-  , "repository": {
-        "type": "git"
-      , "url": "git@github.com:qualiancy/gaia-schema-type.git"
-    }
-  , "engines": {
-      "node": "*"
-    }
-  , "main": "./index"
-  , "scripts": {
-      "test": "make test"
-    }
-  , "dependencies": {
-        "assertion-error": "1.0.0"
-      , "sherlock": "*"
-      , "tea-extend": "0.2.0"
-    }
-  , "devDependencies": {
-        "chai": "*"
-      , "component": "*"
-      , "mocha": "*"
-      , "mocha-phantomjs": "*"
-    }
+  "name": "gaia-schematype",
+  "version": "0.4.0",
+  "description": "Base constructor for all gaia-schema data types.",
+  "author": "Jake Luer <jake@qualiancy.com> (http://qualiancy.com)",
+  "license": "MIT",
+  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:qualiancy/gaia-schema-type.git"
+  },
+  "engines": {
+    "node": "*"
+  },
+  "main": "./index",
+  "scripts": {
+    "test": "node_modules/goodwin/bin/goodwin --harmony"
+  },
+  "dependencies": {
+    "assertion-error": "~1.0.0",
+    "sherlock": "*",
+    "tea-extend": "~0.2.0"
+  },
+  "devDependencies": {
+    "goodwin": "git://github.com/logicalparadox/goodwin"
+  }
 }
