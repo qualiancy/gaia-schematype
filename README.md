@@ -74,14 +74,14 @@ if (custom.valid(value, spec)) {
 ```
 
 
-### .cast (value[, spec])
+### .wrap(value[, spec])
 
-* **@param** _{Mixed}_ value to cast
-* **@param** _{Object}_ spec to cast against
+* **@param** _{Mixed}_ value to wrap
+* **@param** _{Object}_ spec to wrap against
 * **@return** _{Mixed}_  result
 
-Invokes the cast rules of this data type. Will throw
-cast rule errors if they occur. Otherwise it will return
+Invokes the wrap rules of this data type. Will throw
+wrap rule errors if they occur. Otherwise it will return
 the appropriate data element. It is up to the user to
 to validate beforehand.
 
@@ -93,7 +93,7 @@ var spec = { case: 'upper' }
 
 if (!err) {
   try {
-    res = custom.cast(value, spec);
+    res = custom.wrap(value, spec);
   } catch (ex) {
     err = ex;
   }
@@ -103,11 +103,11 @@ cb(err, res);
 ```
 
 
-### .extect (value[, spec])
+### .unwrap(value[, spec])
 
 
-* **@param** _{Mixed}_ value to extract
-* **@param** _{Object}_ spec to extract against
+* **@param** _{Mixed}_ value to unwrap
+* **@param** _{Object}_ spec to unwrap against
 * **@return** _{Mixed}_  result
 
 
@@ -124,27 +124,27 @@ scenario or throw an `Error` if a condition is not
 met.
 
 
-### ._cast (value[, spec])
+### ._wrap(value[, spec])
 
-* **@param** _{Mixed}_ value to cast
-* **@param** _{Object}_ spec to cast against
+* **@param** _{Mixed}_ value to wrap
+* **@param** _{Object}_ spec to wrap against
 
 **Implementors** of custom data types need to
 provide this method to specify how this data
-type should cast specific data points. For example,
+type should wrap specific data points. For example,
 a X/Y vector point specified as an object can be
 exported as an array of `[ x, y ]`.
 
 
-### ._extract (value[, spec])
+### ._unwrap(value[, spec])
 
-* **@param** _{Mixed}_ value to extract
-* **@param** _{Object}_ spec to extract against
+* **@param** _{Mixed}_ value to unwrap
+* **@param** _{Object}_ spec to unwrapagainst
 
 **Implementors** of custom data types need to
 provide this method to specify how this data
-type should extract specific data points. For example,
-a X/Y vector point cast as an array can be extracted
+type should unwrap specific data points. For example,
+a X/Y vector point wrap as an array can be unwrapped
 to an object of `{ x: arr[0], y: arr[1] }`.
 
 

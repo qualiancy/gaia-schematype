@@ -1,4 +1,10 @@
 
+0.5.0 / 2014-03-17 
+==================
+
+  * no longer component
+  * refactor for wrap/unwrap; use goodwin test runner
+
 0.4.0 / 2013-09-02 
 ==================
 
