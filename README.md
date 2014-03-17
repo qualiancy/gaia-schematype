@@ -10,12 +10,6 @@
 
     $ npm install gaia-schematype
 
-### Component
-
-`gaia-schematype` is available as a [component](https://github.com/component/component).
-
-    $ component install qualiancy/gaia-schematype
-
 ## Usage
 
 * **@param** _{String}_ name of type
