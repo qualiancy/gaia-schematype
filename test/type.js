@@ -57,11 +57,11 @@ suite('usage', function () {
 
   suite('.valid()', function () {
     test('return true on pass', function () {
-      str.valid(TEST_STR).should.equal.true;
+      str.valid(TEST_STR).should.be.true;
     });
 
     test('return false on fail', function () {
-      str.valid(42).should.equal.false;
+      str.valid(42).should.be.false;
     });
   });
 

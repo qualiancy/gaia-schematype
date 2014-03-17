@@ -109,7 +109,7 @@ SchemaType.prototype.rejected = function(value, spec) {
  */
 
 SchemaType.prototype.valid = function(value, spec) {
-  return !! this.rejected(value, spec);
+  return !this.rejected(value, spec);
 };
 
 /**
