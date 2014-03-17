@@ -220,7 +220,7 @@ SchemaType.prototype.unwrap = function(value, spec) {
 SchemaType.prototype.assert = function(test, msg, props) {
   if (test) return;
   var only = extend.include('actual', 'expected', 'operator');
-  var data = only(props);
+  var data = only(props || {});
   data.topic =  this.value;
   throw new AssertionError(msg, data, arguments.callee);
 };
